@@ -13,6 +13,18 @@ column1 = dbc.Col(
         
             ## Process
 
+            ********
+
+            This is how I did it.
+
+            HERE'S CODE SHOWING HOW THE TEXT IS CLEANED
+
+            HERE'S CODE SHOWING THE TOKENIZING/VECTORIZER FUNCTIONS
+
+            HERE'S A SNIPPET OF CODE SHOWING LGBMCLASSIFIER
+
+            CAN YOU FIGURE OUT HOW TO USE SPACY'S CNN TEXT CLASSIFIER?
+
 
             """
         ),

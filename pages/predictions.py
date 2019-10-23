@@ -13,6 +13,12 @@ column1 = dbc.Col(
         
             ## Predictions
 
+            ********
+
+            This binary classifier has a majority class baseline of about 81%.
+            The model I used has an accuracy of 85%, beating the baseline accuracy on a hold-out test set.
+
+            HERE'S A SHAPLEY VALUES PLOT
 
             """
         ),

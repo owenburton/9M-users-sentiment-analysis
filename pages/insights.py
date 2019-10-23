@@ -13,6 +13,17 @@ column1 = dbc.Col(
         
             ## Insights
 
+            ********
+
+            When is this model useful? When is it not useful? Why is it useful? Why is it not useful?
+
+            HERE'S A CONFUSION MATRIX
+
+            HERE'S A CLASSIFICATION REPORT
+
+            HERE'S A RANDOM REVIEW
+
+            HERE'S A DIFFERENT KIND OF PRODUCT REVIEW
 
             """
         ),
