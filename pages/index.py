@@ -28,18 +28,39 @@ column1 = dbc.Col(
     [
         dcc.Markdown(
             """
-        
-            ->## How do nine million users feel?<-
+            ## How do nine million users feel?
             
-            *********
+            ********
 
-            Write (or copy-paste) a book review to be analyzed for sentiment. Emphasize how app benefit users. Don't emphasize underlying technology.
+            It's important to understand how customers feel about the products they're using, but 
+            most businesses wouldn't spend the labor hours to manually read millions of reviews.
             
-            * 
+            With a simple example of book review analysis, 
+            I'll show you one way user sentiment can be tracked automatically, quickly, and at scale.
+
+            ##### Copy-paste or write a book review below.
             """
-        )
+        ),
+        dcc.Textarea(
+            id='input-box',
+            placeholder='Max length: 5000 words',
+            value="I loved Excession. It's amazing how creative Iain Banks is. Incredible space opera with AI ethics questions? Gimme 1000 more.",
+            cols=50,
+            rows=3,
+            maxLength=5000,
+            style={'width': '100%', 'marginBottom': '1.2em'}
+        ),
+        dcc.Link(dbc.Button('Rate your review!', color='primary', 
+                            style=dict(marginTop=5, marginBottom=10)), 
+                            href='/predictions'),
     ],
-    md=4,
+    md=5,
 )
 
-layout = dbc.Row([column1])
+column2 = dbc.Col(
+    [
+        html.Img(src='assets/books.jpgs', className='img-fluid')
+    ]
+)
+
+layout = dbc.Row([column1, column2])
