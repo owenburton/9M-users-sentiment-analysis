@@ -5,11 +5,11 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 import plotly.express as px
 # New imports
-# from joblib import load
-# import string
-# import spacy
-# from spacy.lang.en import English
-# from spacy_tokenizer_functions import spacy_tokenizer
+from joblib import load
+import string
+import spacy
+from spacy.lang.en import English
+from spacy_tokenizer_functions import spacy_tokenizer
 
 from app import app
 
@@ -23,8 +23,8 @@ from app import app
 # # Load tokenizer, tagger, parser, NER, and word vectors.
 # parser = English()
 
-# vectorizer = load('assets/vectorizer.joblib')
-# model = load('assets/model.joblib')
+vectorizer = load('assets/vectorizer.joblib')
+model = load('assets/model.joblib')
 
 column1 = dbc.Col(
     [
@@ -55,7 +55,7 @@ column1 = dbc.Col(
         dcc.Link(dbc.Button('Rate your review!', id='button', color='primary', 
                             style=dict(marginTop=5, marginBottom=10)), 
                             href='/predictions'),
-        # html.Div(id='prediction-label', className='lead', style={'marginBottom': '3em', 'fontWeight': 'bold', 'fontSize': '20px'}),
+        html.Div(id='prediction-label', className='lead', style={'marginBottom': '3em', 'fontWeight': 'bold', 'fontSize': '20px'}),
     ],
     md=5,
 )
@@ -68,20 +68,20 @@ column2 = dbc.Col(
 
 layout = dbc.Row([column1, column2])
 
-# @app.callback(
-#     [Output('prediction-label', 'children')],
-#     [Input('button', 'n_clicks')],
-#     [State('input-box', 'value')]
-# )
+@app.callback(
+    [Output('prediction-label', 'children')],
+    [Input('button', 'n_clicks')],
+    [State('input-box', 'value')]
+)
 
-# def predict(clicked, text):
-#     if clicked:
-#         text = [text]
-#         text_vecs = vectorizer(text)
-#         y_pred = model.predict(text_vecs)
-#         if y_pred == 0:
-#             y_pred = 'negative'
-#         else:
-#             y_pred = 'positive'
-#         output = f'This is {y_pred} review.'
-#     return output
+def predict(clicked, text):
+    if clicked:
+        text = [text]
+        text_vecs = vectorizer(text)
+        y_pred = model.predict(text_vecs)
+        if y_pred == 0:
+            y_pred = 'negative'
+        else:
+            y_pred = 'positive'
+        output = f'This is {y_pred} review.'
+    return output
