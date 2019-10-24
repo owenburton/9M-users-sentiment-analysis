@@ -23,6 +23,8 @@ should take up a third of the width. Since we don't specify behaviour on
 smaller size screens Bootstrap will allow the rows to wrap so as not to squash 
 the content.
 """
+# from joblib import load
+# model = 
 
 column1 = dbc.Col(
     [
@@ -59,7 +61,7 @@ column1 = dbc.Col(
 
 column2 = dbc.Col(
     [
-        html.Img(src='assets/books.jpgs', className='img-fluid')
+        html.Img(src='assets/books.jpg', className='img-fluid')
     ]
 )
 
