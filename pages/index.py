@@ -4,27 +4,27 @@ import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
 import plotly.express as px
+# New imports
+# from joblib import load
+# import string
+# import spacy
+# from spacy.lang.en import English
+# from spacy_tokenizer_functions import spacy_tokenizer
 
 from app import app
 
-"""
-https://dash-bootstrap-components.opensource.faculty.ai/l/components/layout
+# # Create punctuation list.
+# punctuations = string.punctuation
 
-Layout in Bootstrap is controlled using the grid system. The Bootstrap grid has 
-twelve columns.
+# # Create stopwords list.
+# # nlp = spacy.load('en_core_web_lg')
+# stop_words = spacy.lang.en.stop_words.STOP_WORDS
 
-There are three main layout components in dash-bootstrap-components: Container, 
-Row, and Col.
+# # Load tokenizer, tagger, parser, NER, and word vectors.
+# parser = English()
 
-The layout of your app should be built as a series of rows of columns.
-
-We set md=4 indicating that on a 'medium' sized or larger screen each column 
-should take up a third of the width. Since we don't specify behaviour on 
-smaller size screens Bootstrap will allow the rows to wrap so as not to squash 
-the content.
-"""
-# from joblib import load
-# model = 
+# vectorizer = load('assets/vectorizer.joblib')
+# model = load('assets/model.joblib')
 
 column1 = dbc.Col(
     [
@@ -52,9 +52,10 @@ column1 = dbc.Col(
             maxLength=5000,
             style={'width': '100%', 'marginBottom': '1.2em'}
         ),
-        dcc.Link(dbc.Button('Rate your review!', color='primary', 
+        dcc.Link(dbc.Button('Rate your review!', id='button', color='primary', 
                             style=dict(marginTop=5, marginBottom=10)), 
                             href='/predictions'),
+        # html.Div(id='prediction-label', className='lead', style={'marginBottom': '3em', 'fontWeight': 'bold', 'fontSize': '20px'}),
     ],
     md=5,
 )
@@ -66,3 +67,21 @@ column2 = dbc.Col(
 )
 
 layout = dbc.Row([column1, column2])
+
+# @app.callback(
+#     [Output('prediction-label', 'children')],
+#     [Input('button', 'n_clicks')],
+#     [State('input-box', 'value')]
+# )
+
+# def predict(clicked, text):
+#     if clicked:
+#         text = [text]
+#         text_vecs = vectorizer(text)
+#         y_pred = model.predict(text_vecs)
+#         if y_pred == 0:
+#             y_pred = 'negative'
+#         else:
+#             y_pred = 'positive'
+#         output = f'This is {y_pred} review.'
+#     return output
