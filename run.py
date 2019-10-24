@@ -83,4 +83,5 @@ def display_page(pathname):
         return dcc.Markdown('## Page not found')
 
 if __name__ == '__main__':
+    # from assets.spacy_tokenizer_functions import spacy_tokenizer
     app.run_server(debug=True)
