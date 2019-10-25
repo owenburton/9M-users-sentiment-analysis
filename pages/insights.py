@@ -12,10 +12,11 @@ import pandas as pd
 from app import app
 
 # Confusion Matrix
-z = [[761486,932601],[ 333213,6870150]]
+z_string = [['761,486','932,601'],['333,213','6,870,150']]
+z = [[761486,932601],[333213,6870150]]
 
-colorscale=[[0, 'blue'], [1, 'pink']]
-font_colors = ['white', 'black']
+colorscale=[[0, 'pink'], [1, 'red']]
+font_colors = ['black', 'pink']
 y=['Actual-neg','Actual-pos']
 x=['Pred-neg','Pred-pos']
 x_labels=['Predicted Negative','Predicted Positive']
@@ -27,20 +28,23 @@ for yi, yy in enumerate(y_labels):
         hovertext[-1].append('{}<br />{}<br />{}'.format(xx, yy, z[yi][xi]))
 
 fig1 = ff.create_annotated_heatmap(z, x=x, y=y, xgap = 2, ygap = 2, 
-                                   hoverinfo="text", text=hovertext, annotation_text=z, 
+                                   hoverinfo="text", text=hovertext, annotation_text=z_string, 
                                    colorscale=colorscale, font_colors=font_colors)
 
 fig1.update_layout(title='Confusion Matrix for Binary Book Review Classifier',
                    xaxis = dict(ticks = ""),
                    yaxis = dict(ticks = "")) 
 
-df = pd.read_csv('https://raw.githubusercontent.com/owenburton/unit2_build1/notebooks/cr.csv', index_col=0)
+index = ['Negative', 'Positive', 'macro avg', 'weighted avg']
+columns = ['Precision', "Recall", "f1-Score"]
+observations = [[0.70, 0.45, 0.55],[0.88, 0.95, 0.92],[0.79, 0.70, 0.73],[0.85, 0.86, 0.85]]
+cr = pd.DataFrame(index=index, data=observations, columns=columns)
 
 fig2 = go.Figure(data=[go.Table(
     columnwidth = [400,300,300,300],
-    header=dict(values=[''] + list(df.columns),
+    header=dict(values=[''] + list(cr.columns),
                 align='left'),
-    cells=dict(values=[['Negative', 'Positive','macro avg', 'weighted avg'], df['Precision'], df['Recall'], df['f1-Score']],
+    cells=dict(values=[['Negative', 'Positive','macro avg', 'weighted avg'], cr['Precision'], cr['Recall'], cr['f1-Score']],
                align='left',
                height=60))
 ])
@@ -78,7 +82,8 @@ column1 = dbc.Col(
             """
         ),
 
-        dcc.Graph(figure=fig1, style={'marginTop': '3em'}),
+        dcc.Graph(figure=fig2, style={'marginTop': '2.5em'}),
+        # dcc.Graph(figure=fig1, style={'marginTop': '3em'}),
     ],
     md=6,
 )
@@ -86,6 +91,7 @@ column1 = dbc.Col(
 column2 = dbc.Col(
     [
         # dcc.Graph(figure=fig2, style={'marginTop': '2.5em'}),
+        dcc.Graph(figure=fig1, style={'marginTop': '3em'}),
 
         dcc.Markdown(
             """
