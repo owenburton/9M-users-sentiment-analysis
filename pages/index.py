@@ -71,7 +71,7 @@ def predict(clicked, text):
             y_pred = 'negative'
         else:
             y_pred = 'positive'
-        output = [f'This is a {y_pred} review.']
+        output = [f'That is a {y_pred} review.']
     return output
 
 # y_preds = model.predict(X_test_vecs)
