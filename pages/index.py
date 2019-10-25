@@ -15,7 +15,7 @@ column1 = dbc.Col(
     [
         dcc.Markdown(
             """
-            ## How do nine million users feel?
+            ## **How do nine million users feel?**
             
             ********
 
@@ -25,7 +25,7 @@ column1 = dbc.Col(
             With a simple example of book review analysis, 
             I'll show you one way user sentiment can be tracked automatically, quickly, and at scale.
 
-            ##### Copy-paste or write a book review below.
+            ##### **Copy-paste or write a book review below.**
             """
         ),
         dcc.Textarea(
@@ -35,25 +35,23 @@ column1 = dbc.Col(
             cols=50,
             rows=3,
             maxLength=5000,
-            style={'width': '100%', 'marginBottom': '1.2em'}
+            style={'width': '100%', 'marginBottom': '1.25em', 'marginTop':'1em'}
         ),
         dbc.Button('Rate your review!', id='button', n_clicks=1, color='primary', 
-                   style=dict(marginTop=5, marginBottom=10)
+                   style=dict(marginTop=1.75, marginBottom=10)
         ),
-        # dcc.Link(dbc.Button('Rate your review!', id='button', color='primary', 
-        #                     style=dict(marginTop=5, marginBottom=10)), 
-        #                     href='/predictions'),
-        dcc.Markdown('### Prediction:', style={'marginBottom': '2em'}), 
+        dcc.Markdown('##### Prediction:', style={'marginBottom': '0'}), 
         html.Div(id='prediction-label', className='lead', 
-                 style={'marginBottom': '3em', 'fontWeight': 'bold', 'fontSize': '20px'}),
+                 style={'marginBottom': '0', 'fontWeight': 'bold', 'fontSize': '18px'}),
     ],
-    md=5,
+    md=6,
 )
 
 column2 = dbc.Col(
     [
-        html.Img(src='assets/books.jpg', className='img-fluid')
-    ]
+        html.Img(src='assets/books.jpg', className='img-fluid', style={'marginTop': '2.5em'})
+    ],
+    md=6,
 )
 
 layout = dbc.Row([column1, column2])
