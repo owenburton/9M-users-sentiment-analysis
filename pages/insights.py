@@ -7,6 +7,7 @@ from dash.dependencies import Input, Output
 import plotly.graph_objects as go
 import plotly.express as px
 import plotly.figure_factory as ff
+import pandas as pd
 
 from app import app
 
