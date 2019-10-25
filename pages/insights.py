@@ -33,7 +33,7 @@ fig1.update_layout(title='Confusion Matrix for Binary Book Review Classifier',
                    xaxis = dict(ticks = ""),
                    yaxis = dict(ticks = "")) 
 
-df = pd.read_csv('https://raw.githubusercontent.com/owenburton/unit2_build1/notebooks/cr.csv'', index_col=0)
+df = pd.read_csv('https://raw.githubusercontent.com/owenburton/unit2_build1/notebooks/cr.csv', index_col=0)
 
 fig2 = go.Figure(data=[go.Table(
     columnwidth = [400,300,300,300],
