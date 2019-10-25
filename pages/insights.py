@@ -31,7 +31,7 @@ fig1 = ff.create_annotated_heatmap(z, x=x, y=y, xgap = 2, ygap = 2,
                                    hoverinfo="text", text=hovertext, annotation_text=z_string, 
                                    colorscale=colorscale, font_colors=font_colors)
 
-fig1.update_layout(title='Confusion Matrix for Binary Book Review Classifier',
+fig1.update_layout(title='Most of the prediction errors were false positives.',
                    xaxis = dict(ticks = ""),
                    yaxis = dict(ticks = "")) 
 
@@ -60,24 +60,28 @@ column1 = dbc.Col(
 
             ********
 
-            ##### **Another title**
+            ##### **Is the app guessing correctly?**
 
-            This binary classifier has a majority class baseline of about 81%.
-            The model I used has an accuracy of 85%, beating the baseline accuracy on a hold-out test set.
+            The model I used to predict your book review's tone has limits. Out of nine million reviews, 
+            it guessed the correct feeling 86% of the time. If you had guessed the most common type, "positive",
+            then you'd be right for 81% of your guesses. 
+            
+            Look at the red and pink confusion matrix to see where most of the model's predictions were wrong.
 
-            HERE'S A SHAPLEY VALUES PLOT
-            ********
-            ##### **Another title**
+            ##### **Why are some predictions wrong?**
+            
+            There's way more positive than negative reviews, but I accounted for imbalanced class weights in the model.
+            For simplicity, I also made this a binary classification problem: negative or positive. The trade-off's 
+            that it's harder to explain the model's results. Are these really all negative, or are some neutral, three-star
+            reviews?
 
-            When is this model useful? When is it not useful? Why is it useful? Why is it not useful?
+            The model is also distracted by noise, or words that aren't helpful for determining the feeling of a review.
+            I address this by removing stop-words like "and" or "it".
 
-            HERE'S A CONFUSION MATRIX
-
-            HERE'S A CLASSIFICATION REPORT
-
-            HERE'S A RANDOM REVIEW
-
-            HERE'S A DIFFERENT KIND OF PRODUCT REVIEW
+            Another reason for the inaccuracies is that I'm using a simple way to change words to numbers. Part of the funnel
+            counts all the words in each review, adjusts their relevance by how often they occur in the text, and associates
+            sentiment to each word. It's not taking into account more complex relationships in the syntax.
+            I could use a more complex model, but this would slow down the time it took to get a rating for your review.
 
             """
         ),
@@ -95,17 +99,27 @@ column2 = dbc.Col(
 
         dcc.Markdown(
             """
-            ##### **This is a bunch of text about the visualization above**
+            ##### **How else can the model be improved?**
             
-            ********
+            If the cost made sense, it's exciting to know there are many, easy ways this model can be improved.
+            If it was in the business's best interest, I could manually add specific common words used in
+            the reviews to the list of removed stop-words. I could train the model on more data, use
+            more accurate ways to represent the meaning of words as numbers, or use a more complex model.
 
-            It's important to understand how customers feel about the products they're using, but 
-            most businesses wouldn't spend the labor hours to manually read millions of reviews.
+            It depends how much money we want to spend to get more accurate results.
+
+            ##### **Is this app useful?**
+
+            It's mostly for demostration purposes, not a production environment, but with a pipeline that
+            collects and feeds in reviews in real-time, the model becomes useful. It can be trained on reviews of
+            different products to become more adaptable. 
             
-            With a simple example of book review analysis, 
-            I'll show you one way user sentiment can be tracked automatically, quickly, and at scale.
+            Also, this process doesn't only have to detect sentiment. It can be trained to detect anomalies in text.
+            Large companies like Lockheed Martin are using a similar process in a pipeline that aggregates tweets
+            from businesses along their supply chain to predict potential costly disruptions.
 
-            ##### **Not sure if I'll need this title**
+            Head over to the "Process" page for the details behind the model I used.
+
             """
         ),
     ],

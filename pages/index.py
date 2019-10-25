@@ -22,8 +22,10 @@ column1 = dbc.Col(
             It's important to understand how customers feel about the products they're using, but 
             most businesses wouldn't spend the labor hours to manually read millions of reviews.
             
-            With a simple example of book review analysis, 
-            I'll show you one way user sentiment can be tracked automatically, quickly, and at scale.
+            With a book review analysis, I'll show you one way user sentiment can be tracked automatically, quickly, and at scale.
+            Next, check out the Insights and Process pages to see how the underlying model can be changed
+            to solve other business problems.
+            
 
             ##### **Copy-paste or write a book review below.**
             """
